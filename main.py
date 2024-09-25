@@ -66,11 +66,21 @@ def main():
     
     
     
-    if (len(possibilities) == 0 and one_away): # if hasn't been ran and is one away
-        possibilities = possibilities_one_away(guess, alt_guess)
-    elif (len(possibilities) == 0 and not one_away) : #else if hasn't been ran and is not one away
-        possibilities = possibilities_not_one_away(sorted(guess), sorted(alt_guess))
+    if (one_away): # if one away
+        if (len(possibilities) == 0): #if hasn't been ran set possiblilities to all possibilities of the gues
+            possibilities = possibilities_one_away(guess, alt_guess)
+        #else:
+            
 
+    elif (not one_away) : #else if not one away
+        if (len(possibilities) == 0): #if hasn't been ran
+            possibilities = possibilities_not_one_away(sorted(guess), sorted(alt_guess))
+        #else: 
+            
+
+
+    
+    
     print(possibilities)
 
 
@@ -100,16 +110,26 @@ def possibilities_not_one_away(guess, alt_guess):
     for fir in range(len(guess)): #for each index (num) in guess
         sec = fir + 1 #starting with the index after num
         while (sec < len(guess)): 
-            {guess[fir], guess[sec]}
+            group_1.append({guess[fir], guess[sec]})
             sec += 1
 
     #find all possible groups of two for alt_guess
     for fir in range(len(alt_guess)): #for each index (num) in alt_guess
         sec = fir + 1 #starting with the index after num
         while (sec < len(alt_guess)): 
-            {alt_guess[fir], alt_guess[sec]} 
+            group_2.append({alt_guess[fir], alt_guess[sec]})
             sec += 1
-
+    #print("GROUP 1")
+    #print (len(group_1))
+    #print("GROUP 2")
+    #print (len(group_2))
+    for x in range(len(group_1)):
+        for y in range(len(group_2)):
+            possibilities.append(group_1[x].union(group_2[y]))
+    
+    #print("POSSIBILITIES")
+    #print(len(possibilities))
+    return possibilities
     
             
     
