@@ -69,8 +69,7 @@ def main():
     if (len(possibilities) == 0 and one_away): # if hasn't been ran and is one away
         possibilities = possibilities_one_away(guess, alt_guess)
     elif (len(possibilities) == 0 and not one_away) : #else if hasn't been ran and is not one away
-        x = 1
-        print(x)
+        possibilities = possibilities_not_one_away(sorted(guess), sorted(alt_guess))
 
     print(possibilities)
 
@@ -91,7 +90,31 @@ def possibilities_one_away(guess, alt_guess):
     return possibilities
 
 def possibilities_not_one_away(guess, alt_guess):
-    x = 1
+
+    poss = {1, 2, 3, 4, 5, 6, 7, 8}
+    group_1 = []
+    group_2 = []
+    possibilities = []
+
+    #find all possible groups of two for guess
+    for fir in range(len(guess)): #for each index (num) in guess
+        sec = fir + 1 #starting with the index after num
+        while (sec < len(guess)): 
+            {guess[fir], guess[sec]}
+            sec += 1
+
+    #find all possible groups of two for alt_guess
+    for fir in range(len(alt_guess)): #for each index (num) in alt_guess
+        sec = fir + 1 #starting with the index after num
+        while (sec < len(alt_guess)): 
+            {alt_guess[fir], alt_guess[sec]} 
+            sec += 1
+
+    
+            
+    
+
+
 
 if __name__ == "__main__":
     main()
